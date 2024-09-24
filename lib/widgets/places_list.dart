@@ -9,15 +9,17 @@ class PlacesList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (places.isEmpty) {
       return Center(
-        child: Text('No places added yet.',  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+        child: Text(
+          'No places added yet.',
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Theme.of(context).colorScheme.onSurface,
-              ),),
+              ),
+        ),
       );
     }
     return ListView.builder(
       itemCount: places.length,
       itemBuilder: (ctx, index) => ListTile(
-
         leading: CircleAvatar(
           radius: 26,
           backgroundImage: FileImage(places[index].image),
@@ -28,8 +30,20 @@ class PlacesList extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onSurface,
               ),
         ),
+        subtitle: Text(
+          places[index].location.address,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+        ),
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => PlaceDetailScreen(place: places[index],),),);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => PlaceDetailScreen(
+                place: places[index],
+              ),
+            ),
+          );
         },
       ),
     );
