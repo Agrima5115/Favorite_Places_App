@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:favorite_places/screens/places.dart';
 
 final colorScheme = ColorScheme.fromSeed(
-  brightness: Brightness.dark,
-  seedColor: const Color.fromARGB(255, 102, 6, 247),
-  surface: const Color.fromARGB(255, 56, 49, 66),
+  brightness: Brightness.light,
+  seedColor: const Color.fromARGB(255, 16, 0, 42),
+  surface: const Color.fromARGB(255, 234, 234, 234),
 );
 
 final theme = ThemeData().copyWith(

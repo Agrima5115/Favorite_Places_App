@@ -19,6 +19,7 @@ class PlaceDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(place.title),
+        backgroundColor: const Color.fromARGB(255, 213, 208, 222),
       ),
       body: Stack(
         children: [
@@ -46,7 +47,7 @@ class PlaceDetailScreen extends StatelessWidget {
                     );
                   },
                   child: CircleAvatar(
-                    radius: 70,
+                    radius: 40,
                     backgroundImage: NetworkImage(locationImage),
                   ),
                 ),

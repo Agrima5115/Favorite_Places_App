@@ -44,6 +44,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Place'),
+        backgroundColor: const Color.fromARGB(255, 213, 208, 222),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),

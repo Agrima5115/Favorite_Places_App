@@ -29,6 +29,7 @@ class _PlaceScreenState extends ConsumerState<PlacesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Places'),
+        backgroundColor: const Color.fromARGB(255, 213, 208, 222),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
