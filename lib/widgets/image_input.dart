@@ -16,10 +16,10 @@ class ImageInput extends StatefulWidget {
 class _ImageInputState extends State<ImageInput> {
   File? _selectedImage;
 
-  void _takePicture() async {
+  Future<void> _takePicture(ImageSource source) async {
     final imagePicker = ImagePicker();
     final pickedImage =
-        await imagePicker.pickImage(source: ImageSource.camera, maxWidth: 600);
+        await imagePicker.pickImage(source: source, maxWidth: 600);
     if (pickedImage == null) {
       return;
     }
@@ -30,17 +30,47 @@ class _ImageInputState extends State<ImageInput> {
     widget.onPickImage(_selectedImage!);
   }
 
+  void _openImagePicker(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return SafeArea(
+        child: Wrap(
+          children: <Widget>[
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: const Text('Photo Library'),
+              onTap: () {
+                _takePicture(ImageSource.gallery);
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text('Camera'),
+              onTap: () {
+                _takePicture(ImageSource.camera);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     Widget content = TextButton.icon(
       icon: const Icon(Icons.camera_alt_outlined),
       label: const Text('Take Picture'),
-      onPressed: _takePicture,
+      onPressed: () => _openImagePicker(context),
     );
 
     if (_selectedImage != null) {
       content = GestureDetector(
-        onTap: _takePicture,
+        onTap: () => _openImagePicker(context),
         child: Image.file(
           _selectedImage!,
           fit: BoxFit.cover,
